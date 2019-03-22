@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+<aop:aspectj-autoproxy />
+	<bean id="employee" class="com.bridgelabz.aopxml.Employee">
+   		<property name="id" value="100"/>
+   		<property name="name" value="Tasif"/>
+   </bean>
+   <bean id="service" class="com.bridgelabz.aopxml.Service"/>
+	<aop:config>
+   		<aop:aspect id="aspest" ref="service">
+   			<aop:pointcut id="pointcutsBefore" expression="execution(* com.bridgelabz.aopxml.Employee.printDetails(..))"/>
+   			<aop:before pointcut-ref = "pointcutsBefore" method = "beforeAdvice"/>
+   			<!-- <aop:pointcut id="pointcutsAfter" expression="execution(* com.bridgelabz.aopxml.Employee.printDetails(..))"/>
+   			<aop:after pointcut-ref = "pointcutsAfter" method = "afterAdvice"/>
+   			<aop:pointcut id="pointcutsAround" expression="execution(* com.bridgelabz.aopxml.Employee.printDetails(..))"/>
+   			<aop:around pointcut-ref = "pointcutsAround" method = "aroundAdvice"/> -->
+   		</aop:aspect>
+   </aop:config>
+
+</beans>
